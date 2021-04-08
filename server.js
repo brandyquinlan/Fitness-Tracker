@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require('morgan');
 const db = require('./models');
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -14,18 +14,9 @@ app.use(logger("dev"));
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
   useNewUrlParser: true,
-  // useFindAndModify: false
-});
-
-
-app.get('/api/workouts', async (req, res) => {
-  try {
-    const workouts = await db.Workout.find({});
-    res.send(workouts);;
-  }
-  catch (err) {
-    res.json(err);
-  };
+  useFindAndModify: false,
+  useCreateIndex: true,
+  useUnifiedTopology: true
 });
 
 // // routes
