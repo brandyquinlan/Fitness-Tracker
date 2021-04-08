@@ -3,19 +3,6 @@ const mongoose = require("mongoose");
 const db = require("../models/Workout.js");
 const router = require("express").Router();
 
-// module.exports = function (app) {
-
-  // router.get('/api/workouts', (req, res) => {
-  //   db.Workout.find({})
-  //     .then(dbWorkout => {
-  //       res.json(dbWorkout);
-  //     })
-  //     .catch(err => {
-  //       res.json(err);
-  //     });
-  // });
-
-
   router.get('/api/workouts', async (req, res) => {
     try {
       const workouts = await db.Workout.find({});
@@ -75,8 +62,5 @@ router.delete("/api/workouts", ({ body }, res) => {
     res.json(err);
   });
 });
-
-// };
-
 
 module.exports = router;
