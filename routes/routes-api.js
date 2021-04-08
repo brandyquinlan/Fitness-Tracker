@@ -3,15 +3,15 @@ const mongoose = require("mongoose");
 const db = require("../models/Workout.js");
 const router = require("express").Router();
 
-  router.get('/api/workouts', async (req, res) => {
-    try {
-      const workouts = await db.Workout.find({});
-      res.send(workouts);;
-    }
-    catch (err) {
-      res.json(err);
-    };
-  });
+  // router.get('/api/workouts', async (req, res) => {
+  //   try {
+  //     const workouts = await db.Workout.find({});
+  //     res.send(workouts);;
+  //   }
+  //   catch (err) {
+  //     res.json(err);
+  //   };
+  // });
 
   router.put('/api/workouts/:id', async ({ body, params }, res) => {
     await db.findByIdAndUpdate(
