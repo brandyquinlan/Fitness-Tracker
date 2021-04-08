@@ -28,19 +28,14 @@ const router = require("express").Router();
 });
 
 
-router.post('/api/workouts', async ({ body }, res) => {
-  const workout = body;
-  try {
-    await db.workout.save(workout, (error, saved) => {
-      if (error) {
-        console.log(error);
-      } else {
-        res.send(saved);
-      }
-    });
-  } catch (err) {
-    res.json(err);
-  };
+router.post("/api/workouts", async ({ body }, res) => {
+  await db.Workout.create(body)
+      .then(dbWorkout => {
+          res.json(dbWorkout);
+      })
+      .catch(err => {
+          res.status(400).json(err);
+      });
 });
 
 router.get('/api/workouts/range', (req, res) => {

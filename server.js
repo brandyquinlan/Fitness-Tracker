@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const logger = require('morgan');
 const db = require('./models');
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 8000;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -12,11 +12,15 @@ app.use(express.static("public"));
 
 app.use(logger("dev"));
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", {
-  useNewUrlParser: true,
-  // useFindAndModify: false
-});
-
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/workout',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 app.get('/api/workouts', async (req, res) => {
   try {
@@ -27,10 +31,10 @@ app.get('/api/workouts', async (req, res) => {
     res.json(err);
   };
 });
-
 // // routes
-app.use(require("./routes/routes-api"));
-app.use(require("./routes/routes-html"));
+// app.use(require("./routes/routes-api"));
+// app.use(require("./routes/routes-html"));
+
 
 
 app.listen(PORT, () => {
