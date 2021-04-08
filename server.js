@@ -22,6 +22,7 @@ mongoose.connect(
   }
 );
 
+// Route to last workout data
 app.get('/api/workouts', async (req, res) => {
   try {
     const workouts = await db.Workout.find({});
@@ -31,11 +32,10 @@ app.get('/api/workouts', async (req, res) => {
     res.json(err);
   };
 });
-// // routes
-// app.use(require("./routes/routes-api"));
-// app.use(require("./routes/routes-html"));
 
-
+// Routes
+app.use(require("./routes/routes-api"));
+app.use(require("./routes/routes-html"));
 
 app.listen(PORT, () => {
   console.log(`App running on port ${PORT}!`);
