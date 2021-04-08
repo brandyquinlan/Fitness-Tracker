@@ -25,7 +25,13 @@ mongoose.connect(
 // Route to last workout data
 app.get('/api/workouts', async (req, res) => {
   try {
-    const workouts = await db.Workout.find({});
+    const workouts = await db.Workout.aggregate([{
+      $addFields: {
+        totalDuration: {
+          $sum: "$exercises.duration"
+        }
+      }
+    }])
     res.send(workouts);;
   }
   catch (err) {
