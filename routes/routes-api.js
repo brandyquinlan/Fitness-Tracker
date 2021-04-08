@@ -15,12 +15,11 @@ const router = require("express").Router();
   //     });
   // });
 
-  // moved to server.js
+
   router.get('/api/workouts', async (req, res) => {
     try {
       const workouts = await db.Workout.find({});
-      const workoutData = await workouts.json();
-      res.json(workoutData);;
+      res.send(workouts);;
     }
     catch (err) {
       res.json(err);
