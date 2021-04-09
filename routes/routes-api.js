@@ -1,41 +1,32 @@
-// const express = require('express');
-// const mongoose = require("mongoose");
-const db = require("../models/Workout.js");
+const db = require("../models");
 const router = require("express").Router();
 
 router.put('/api/workouts/:id', ({ body, params }, res) => {
-  db.findByIdAndUpdate(
-    params.id,
-    { $push: { exercises: body } },
-    { new: true, runValidators: true }
-  )
-    .then(res => {
-      res.json(res);
+  db.Workout.findByIdAndUpdate(
+    { _id: params.id },
+    { $push: { exercises: body } })
+    .then((updatedWorkout) => {
+      res.json(updatedWorkout);
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });
 
 router.post("/api/workouts", ({ body }, res) => {
   db.Workout.create(body)
-    .then(res => {
-      res.json(res);
+    .then((data) => {
+      res.json(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.json(err);
     });
 });
 
 router.get('/api/workouts/range', (req, res) => {
   db.Workout.find({})
-    .sort({ date: -1 })
-    .then(res => {
-      res.json(res);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+  .then((workout) => res.json(workout))
+  .catch((err) => res.json(err));
 });
 
 module.exports = router;
