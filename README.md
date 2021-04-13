@@ -1,4 +1,4 @@
-# Fitness Tracker
+# MongoDB Fitness Tracker
 ![GitHub license](https://img.shields.io/badge/License-MIT-orange)
 
 ## Table of Contents
