@@ -54,10 +54,11 @@ function populateChart(data) {
       datasets: [
         {
           label: 'Workout Duration In Minutes',
-          backgroundColor: 'red',
-          borderColor: 'red',
+          backgroundColor: 'rgb(227, 11, 92, 0.2)',
+          borderColor: 'rgba(227, 11, 92, 1)',
           data: durations,
           fill: false,
+          borderWidth: 1,
         },
       ],
     },
@@ -65,6 +66,7 @@ function populateChart(data) {
       responsive: true,
       title: {
         display: true,
+        text: 'Workout Duration',
       },
       scales: {
         xAxes: [
