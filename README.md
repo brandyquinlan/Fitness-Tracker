@@ -65,7 +65,7 @@ WHEN I click the Dashbord link in the nav bar
 * [Link to demo - https://drive.google.com/file/d/1YS1xhmuRQthoEwNz0Y12dRKlhUP5su8T/view?usp=sharing](https://drive.google.com/file/d/1YS1xhmuRQthoEwNz0Y12dRKlhUP5su8T/view?usp=sharing)
 
 ## Screenshots
-![Screenshots](/public/img/screenshots.png)
+![Screenshots](/public/assets/img/screenshots.png)
 
 
 ## Functionality
