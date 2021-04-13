@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const logger = require('morgan');
-const db = require('./models');
+const logger = require("morgan");
+const db = require("./models");
 const PORT = process.env.PORT || 8000;
 const app = express();
 
@@ -13,7 +13,7 @@ app.use(express.static("public"));
 app.use(logger("dev"));
 
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://localhost/workout',
+  process.env.MONGODB_URI || "mongodb://localhost/workout",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -23,7 +23,7 @@ mongoose.connect(
 );
 
 // Route to last workout data
-app.get('/api/workouts', async (req, res) => {
+app.get("/api/workouts", async (req, res) => {
   try {
     const workouts = await db.Workout.aggregate([{
       $addFields: {
