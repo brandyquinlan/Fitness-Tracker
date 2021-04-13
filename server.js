@@ -4,6 +4,7 @@ const logger = require("morgan");
 const db = require("./models");
 const PORT = process.env.PORT || 8000;
 const app = express();
+const router = require("express").Router();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -23,21 +24,29 @@ mongoose.connect(
 );
 
 // Route to last workout data
-app.get("/api/workouts", async (req, res) => {
-  try {
-    const workouts = await db.Workout.aggregate([{
+router.get("/api/workouts", (req, res) => {
+    const workouts = db.Workout.aggregate([{
       $addFields: {
-        totalDuration: {
-          $sum: "$exercises.duration"
-        }
+        totalDuration: {$sum: "$exercises.duration"}
       }
     }])
-    res.send(workouts);;
-  }
-  catch (err) {
-    res.json(err);
-  };
-});
+    .then((workouts) => {
+      res.json(workouts);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+  });
+
+// router.get("/api/workouts", (req, res) => {
+//   db.Workout.find({})
+//   .then((workouts) => {
+//     res.json(workouts);
+//   })
+//   .catch((err) => {
+//     res.json(err);
+//   });
+// });
 
 // Routes
 app.use(require("./routes/routes-api"));
