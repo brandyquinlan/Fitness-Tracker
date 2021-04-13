@@ -38,15 +38,6 @@ router.get("/api/workouts", (req, res) => {
     });
   });
 
-// router.get("/api/workouts", (req, res) => {
-//   db.Workout.find({})
-//   .then((workouts) => {
-//     res.json(workouts);
-//   })
-//   .catch((err) => {
-//     res.json(err);
-//   });
-// });
 
 // Routes
 app.use(require("./routes/routes-api"));
